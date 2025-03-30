@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: black;
+      }
+    </style>
+    <script defer type="module">
+      import init from "./foo.js";
+
+      async function run() {
+        const { start } = await init();
+        console.log(await start());
+      }
+
+      run();
+    </script>
+  </head>
+</html>
