@@ -82,9 +82,8 @@ pub const HtmlCanvasElement = packed struct {
 
     pub fn set_fillstyle() void {}
 
-    pub fn get_context_2d(self: HtmlCanvasElement) zdom.CanvasRenderingContext2d {
+    pub fn get_context_2d(self: HtmlCanvasElement) ?zdom.CanvasRenderingContext2d {
         const index = __canvasGetContext2d(self.ref.index);
-
-        return zdom.CanvasRenderingContext2d{ .ref = zdom.JsRef{ .index = index } };
+        return if (index == 0) null else zdom.CanvasRenderingContext2d{ .ref = zdom.JsRef{ .index = index } };
     }
 };
