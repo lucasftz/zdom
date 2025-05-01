@@ -34,7 +34,3 @@ pub fn instanceof(object: anytype, T: type) bool {
 
     return true;
 }
-
-pub fn foo() void {
-    window;
-}

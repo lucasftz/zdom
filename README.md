@@ -6,10 +6,21 @@
 
 Add the following to your build.zig.zon .dependencies object:
 
-```.zig
+```zig
 .zdom = .{
     .url = "https://github.com/lucasftz/zdom/archive/refs/heads/main.zip",
 }
+```
+
+And the following to your build.zig file:
+
+```zig
+const zdom = b.dependency("zdom", .{
+    .optimize = optimize,
+    .target = target,
+});
+
+exe.root_module.addImport("zdom", zdom.module("zdom"));
 ```
 
 ## Features
