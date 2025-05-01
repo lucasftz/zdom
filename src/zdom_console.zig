@@ -1,6 +1,6 @@
 const zdom = @import("zdom.zig");
 
-extern fn __console_log(fmt: [*]const u8, fmt_len: usize, vargs_ptr: [*]u32) void;
+extern fn __consoleLog(fmt: [*]const u8, fmt_len: usize, vargs_ptr: [*]u32) void;
 
 fn toJsRef(zdomStruct: anytype) zdom.JsRef {
     const T = @TypeOf(zdomStruct);
@@ -61,6 +61,6 @@ pub const Console = packed struct {
             arg_index += 1;
         }
 
-        __console_log(fmt.ptr, fmt.len, &args_buffer);
+        __consoleLog(fmt.ptr, fmt.len, &args_buffer);
     }
 };

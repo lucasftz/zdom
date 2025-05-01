@@ -2,7 +2,7 @@ const zdom = @import("zdom.zig");
 const std = @import("std");
 
 extern fn __free(ref: u32) void;
-extern fn __element_append_node(element_ref: u32, node_ref: u32) void;
+extern fn __elementAppendNode(element_ref: u32, node_ref: u32) void;
 
 pub const HtmlElement = packed struct {
     ref: zdom.JsRef,
@@ -28,7 +28,7 @@ pub const HtmlElement = packed struct {
         if (!@hasDecl(T, "as_node")) {
             @compileError("Type " ++ @typeName(T) ++ " does not implement node");
         }
-        __element_append_node(self.ref.index, node.as_node().ref.index);
+        __elementAppendNode(self.ref.index, node.as_node().ref.index);
     }
 };
 
