@@ -2,6 +2,16 @@
 
 `zdom` is a WebAssembly (WASM) binding for Zig, providing an idiomatic and efficient way to interact with the DOM directly from Zig code compiled to WebAssembly.
 
+## Installation
+
+Add the following to your build.zig.zon .dependencies object:
+
+```.zig
+.zdom = .{
+    .url = "https://github.com/lucasftz/zdom/archive/refs/heads/main.zip",
+}
+```
+
 ## Features
 
 - Interact with the DOM using Zig
