@@ -3,6 +3,7 @@ const std = @import("std");
 
 extern fn __free(ref: u32) void;
 extern fn __elementAppendNode(element_ref: u32, node_ref: u32) void;
+extern fn __canvasGetContext2d(element_ref: u32) u32;
 
 pub const HtmlElement = packed struct {
     ref: zdom.JsRef,
@@ -81,23 +82,9 @@ pub const HtmlCanvasElement = packed struct {
 
     pub fn set_fillstyle() void {}
 
-    pub fn get_context(self: HtmlCanvasElement, comptime context_type: []const u8) ?zdom.CanvasRenderingContext {
-        const valid_contexts = .{ "2d", "webgl", "experimental-webgl", "webgl2", "webgpu", "bitmaprenderer" };
-        const error_msg = "invalid context type '" ++ context_type ++ "' (expected one of '2d', 'webgl', 'experimental-webgl', 'webgl2', 'webgpu', 'bitmaprenderer')";
+    pub fn get_context_2d(self: HtmlCanvasElement) zdom.CanvasRenderingContext2d {
+        const index = __canvasGetContext2d(self.ref.index);
 
-        comptime var is_valid_context = false;
-        inline for (valid_contexts) |valid_context| {
-            if (comptime std.mem.eql(u8, valid_context, context_type)) {
-                is_valid_context = true;
-                break;
-            }
-        }
-
-        if (!is_valid_context) {
-            @compileError(error_msg);
-        }
-
-        _ = self;
-        return null;
+        return zdom.CanvasRenderingContext2d{ .ref = zdom.JsRef{ .index = index } };
     }
 };

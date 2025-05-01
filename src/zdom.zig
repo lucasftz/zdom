@@ -8,7 +8,6 @@ pub const console = Console{ .ref = JsRef{ .index = JsRef.CONSOLE } };
 
 pub const Error = error{NotInstanceOf};
 
-pub const CanvasRenderingContext = @import("zdom_canvasrenderingcontext.zig").CanvasRenderingContext;
 pub const CanvasRenderingContext2d = @import("zdom_canvasrenderingcontext2d.zig").CanvasRenderingContext2d;
 pub const Console = @import("zdom_console.zig").Console;
 pub const Document = @import("zdom_document.zig").Document;
